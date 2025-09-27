@@ -4,6 +4,10 @@ extends CharacterBody2D
 const SPEED := 300.0           # pixels per second
 const BOOST_SPEED := 500.0     # optional faster speed when boosting
 
+var max_health = 100
+var current_health = 100
+@onready var health_bar = $CanvasLayer/HealthBar
+
 # Fuel settings
 var max_fuel := 100.0
 var current_fuel := 100.0
@@ -38,3 +42,25 @@ func _physics_process(delta: float) -> void:
 	if input_vector.length() > 0:
 		current_fuel -= fuel_drain_rate * delta
 		current_fuel = clamp(current_fuel, 0, max_fuel)  # prevent negative fuel
+		
+		
+func take_damage(amount: int) -> void:
+	current_health -= amount
+	if current_health < 0:
+		current_health = 0
+	
+	health_bar.value = current_health
+
+	if current_health == 0:
+		die()
+		
+
+
+	current_health -= amount
+	if current_health <= 0:
+		print("Game Over")  # You can trigger fail logic here
+
+		
+func die() -> void:
+	print("Game Over - Rocket Destroyed!")
+	# Add your game over logic here (like switching to game over scene)
