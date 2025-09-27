@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bncnpndtdv0s1"]
+[gd_scene load_steps=8 format=3 uid="uid://dt0llnyw1j001"]
 
 [ext_resource type="Texture2D" uid="uid://cifh0iiva7jsg" path="res://Rocket.png" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://bij22n3g7lrkb" path="res://Scripts/player.gd" id="1_onrkg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sh265"]
 radius = 14.0
@@ -36,6 +37,7 @@ animations = [{
 }]
 
 [node name="player" type="CharacterBody2D"]
+script = ExtResource("1_onrkg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(139, 36)
@@ -45,4 +47,5 @@ shape = SubResource("CapsuleShape2D_sh265")
 position = Vector2(138, 45)
 sprite_frames = SubResource("SpriteFrames_sweqy")
 animation = &"idle"
+autoplay = "idle"
 frame_progress = 0.6082723
