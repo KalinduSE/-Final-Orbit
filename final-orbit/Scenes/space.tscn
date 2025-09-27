@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://b624pko3d7g0h"]
+[gd_scene load_steps=24 format=3 uid="uid://b624pko3d7g0h"]
 
 [ext_resource type="PackedScene" uid="uid://dt0llnyw1j001" path="res://player.tscn" id="1_0ll74"]
 [ext_resource type="Texture2D" uid="uid://c50gu8tajoqnr" path="res://Nairan/Starfield_01-1024x1024.png" id="1_p3ued"]
@@ -65,18 +65,23 @@ sources/0 = SubResource("TileSetAtlasSource_wnfdr")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_va77k"]
 size = Vector2(1152, 20)
 
-[sub_resource type="GDScript" id="GDScript_kqa63"]
-script/source = "extends Button
-"
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kqa63"]
 
-[node name="Space" type="Node2D" node_paths=PackedStringArray("player")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0b4c6"]
+bg_color = Color(0.34156835, 0.27470312, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sg02i"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4qykp"]
+bg_color = Color(0.43110743, 0.042076625, 0, 1)
+
+[node name="Space" type="Node2D"]
 script = ExtResource("1_uqc4w")
-player = NodePath("player")
 metadata/_edit_horizontal_guides_ = [39.0]
 
 [node name="background" type="Sprite2D" parent="."]
-position = Vector2(625, 175.5)
-scale = Vector2(1.2324219, 1.1103516)
+position = Vector2(599, 170.00002)
+scale = Vector2(10.058, 8)
 texture = ExtResource("1_p3ued")
 
 [node name="Spaceman" type="AnimatedSprite2D" parent="."]
@@ -91,7 +96,7 @@ tile_set = SubResource("TileSet_0ll74")
 format = 2
 
 [node name="player" parent="." instance=ExtResource("1_0ll74")]
-position = Vector2(109, 15)
+position = Vector2(513, 315)
 
 [node name="Invisiblewall" type="TileMap" parent="."]
 visible = false
@@ -133,7 +138,7 @@ offset_top = 436.0
 offset_right = 580.0
 offset_bottom = 476.0
 
-[node name="Save your friend" type="Button" parent="UI/ChoiceScreen"]
+[node name="SaveYourFriend" type="Button" parent="UI/ChoiceScreen"]
 layout_mode = 0
 offset_left = -264.0
 offset_top = 44.0
@@ -141,9 +146,8 @@ offset_right = -121.0
 offset_bottom = 75.0
 scale = Vector2(2, 2)
 text = "Save Yoiur Friend"
-script = SubResource("GDScript_kqa63")
 
-[node name="Save the Earth" type="Button" parent="UI/ChoiceScreen"]
+[node name="SaveTheEarth" type="Button" parent="UI/ChoiceScreen"]
 layout_mode = 0
 offset_left = 155.0
 offset_top = 44.0
@@ -155,6 +159,7 @@ text = "Save The Earth"
 [node name="InputBlocker" type="Control" parent="UI"]
 visible = false
 layout_mode = 3
+anchors_preset = 9
 anchor_bottom = 1.0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -164,3 +169,30 @@ offset_bottom = 40.0
 [node name="TimerLabel" type="Label" parent="UI"]
 offset_right = 40.0
 offset_bottom = 23.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="FuelBar" type="ProgressBar" parent="CanvasLayer"]
+offset_left = 7.0
+offset_top = 107.00001
+offset_right = 11.0
+offset_bottom = 134.0
+rotation = -1.5707964
+scale = Vector2(6, 6)
+theme_override_styles/background = SubResource("StyleBoxFlat_kqa63")
+theme_override_styles/fill = SubResource("StyleBoxFlat_0b4c6")
+value = 100.0
+fill_mode = 2
+show_percentage = false
+
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer"]
+offset_left = 1138.0
+offset_top = 81.0
+offset_right = 1142.0
+offset_bottom = 108.0
+rotation = 1.5707964
+scale = Vector2(6, 6)
+theme_override_styles/background = SubResource("StyleBoxFlat_sg02i")
+theme_override_styles/fill = SubResource("StyleBoxFlat_4qykp")
+value = 100.0
+show_percentage = false

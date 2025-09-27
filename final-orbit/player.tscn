@@ -76,18 +76,15 @@ animations = [{
 script = ExtResource("1_onrkg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(474, 317)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_sh265")
 
 [node name="NairanBattlecruiserBase" type="Sprite2D" parent="."]
-position = Vector2(474, 318)
 rotation = 1.5707964
 scale = Vector2(2, 2)
 texture = ExtResource("2_i3pqv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(464, 314)
 rotation = 1.5707964
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_urp6f")
