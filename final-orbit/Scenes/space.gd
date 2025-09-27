@@ -79,6 +79,9 @@ func _on_save_your_friend_pressed() -> void:
 	choice_made = true
 	fuel_drain_timer = 0.0
 	print("Save your friend pressed")
+	get_node("UI/ChoiceScreen").visible = false
+	get_node("UI/DecisionTimer").stop()
+	get_node("UI/TimerLabel").visible = false		
 
 	# Set target rotation 180° from current rotation
 	target_angle = player.rotation + deg_to_rad(180)
@@ -96,6 +99,9 @@ func _on_save_the_earth_pressed() -> void:
 	choice_made = true
 	decision_timer.stop()
 	print("Save the Earth pressed")
+	get_node("UI/ChoiceScreen").visible = false
+	get_node("UI/DecisionTimer").stop()
+	get_node("UI/TimerLabel").visible = false		
 	# Add your save the Earth logic here
 
 
