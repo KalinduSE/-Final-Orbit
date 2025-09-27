@@ -4,6 +4,7 @@ const SPEED = 200.0
 const ROTATION_SPEED = 5.0  # radians per second
 
 var started := false
+#2
 
 func _ready() -> void:
 	# Wait 10 seconds, then start everything
