@@ -1,10 +1,11 @@
-[gd_scene load_steps=19 format=3 uid="uid://b624pko3d7g0h"]
+[gd_scene load_steps=21 format=3 uid="uid://b624pko3d7g0h"]
 
 [ext_resource type="PackedScene" uid="uid://dt0llnyw1j001" path="res://player.tscn" id="1_0ll74"]
 [ext_resource type="Texture2D" uid="uid://c50gu8tajoqnr" path="res://Nairan/Starfield_01-1024x1024.png" id="1_p3ued"]
+[ext_resource type="Script" uid="uid://b78nqj7twr0cs" path="res://Scenes/space.gd" id="1_uqc4w"]
 [ext_resource type="Texture2D" uid="uid://ct5hgqv3wdoqn" path="res://Nairan/space man.png" id="2_1fjq1"]
 [ext_resource type="Texture2D" uid="uid://dvfojftrd2bu4" path="res://Nairan/Purple Planet.png" id="3_2fo43"]
-[ext_resource type="Script" uid="uid://b0fwm0uos2kyn" path="res://Scenes/spaceman.gd" id="3_kqa63"]
+[ext_resource type="Script" path="res://Scenes/spaceman.gd" id="3_kqa63"]
 [ext_resource type="Script" uid="uid://cx1xiqv87o30u" path="res://Scenes/static_body_2d.gd" id="4_bj3u6"]
 [ext_resource type="Script" uid="uid://bggcudkbi1ovd" path="res://Scenes/collision_shape_2d.gd" id="4_wnfdr"]
 [ext_resource type="Script" uid="uid://dv8bihifup7pu" path="res://Scenes/ui.gd" id="6_va77k"]
@@ -48,7 +49,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_6umj4")
 }],
 "loop": true,
-"name": &"default",
+"name": &"run",
 "speed": 5.0
 }]
 
@@ -64,7 +65,14 @@ sources/0 = SubResource("TileSetAtlasSource_wnfdr")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_va77k"]
 size = Vector2(1152, 20)
 
-[node name="Space" type="Node2D"]
+[sub_resource type="GDScript" id="GDScript_kqa63"]
+script/source = "extends Button
+"
+
+[node name="Space" type="Node2D" node_paths=PackedStringArray("player")]
+script = ExtResource("1_uqc4w")
+player = NodePath("player")
+metadata/_edit_horizontal_guides_ = [39.0]
 
 [node name="background" type="Sprite2D" parent="."]
 position = Vector2(625, 175.5)
@@ -75,7 +83,7 @@ texture = ExtResource("1_p3ued")
 position = Vector2(528.00006, 335.17645)
 scale = Vector2(0.34705877, 0.34705877)
 sprite_frames = SubResource("SpriteFrames_xfpl3")
-frame_progress = 0.82925475
+animation = &"run"
 script = ExtResource("3_kqa63")
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -108,11 +116,51 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -50.0
-offset_right = 20.0
-offset_bottom = -27.0
+offset_left = -37.0
+offset_top = -537.0
+offset_right = 3.0
+offset_bottom = -498.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_type_variation = &"HeaderLarge"
 text = "\" \""
+
+[node name="ChoiceScreen" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 540.0
+offset_top = 436.0
+offset_right = 580.0
+offset_bottom = 476.0
+
+[node name="Save your friend" type="Button" parent="UI/ChoiceScreen"]
+layout_mode = 0
+offset_left = -264.0
+offset_top = 44.0
+offset_right = -121.0
+offset_bottom = 75.0
+scale = Vector2(2, 2)
+text = "Save Yoiur Friend"
+script = SubResource("GDScript_kqa63")
+
+[node name="Save the Earth" type="Button" parent="UI/ChoiceScreen"]
+layout_mode = 0
+offset_left = 155.0
+offset_top = 44.0
+offset_right = 278.0
+offset_bottom = 75.0
+scale = Vector2(2, 2)
+text = "Save The Earth"
+
+[node name="InputBlocker" type="Control" parent="UI"]
+visible = false
+layout_mode = 3
+anchor_bottom = 1.0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DecisionTimer" type="Timer" parent="UI"]
+
+[node name="TimerLabel" type="Label" parent="UI"]
+offset_right = 40.0
+offset_bottom = 23.0
