@@ -1,14 +1,43 @@
-[gd_scene load_steps=3 format=3 uid="uid://b624pko3d7g0h"]
+[gd_scene load_steps=8 format=3 uid="uid://b624pko3d7g0h"]
 
 [ext_resource type="PackedScene" uid="uid://dt0llnyw1j001" path="res://player.tscn" id="1_0ll74"]
+[ext_resource type="Texture2D" uid="uid://c50gu8tajoqnr" path="res://Nairan/Starfield_01-1024x1024.png" id="1_p3ued"]
+[ext_resource type="Texture2D" uid="uid://dvfojftrd2bu4" path="res://Nairan/Purple Planet.png" id="3_2fo43"]
 
 [sub_resource type="TileSet" id="TileSet_0ll74"]
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wnfdr"]
+texture = ExtResource("3_2fo43")
+texture_region_size = Vector2i(68, 22)
+
+[sub_resource type="TileSet" id="TileSet_bj3u6"]
+sources/0 = SubResource("TileSetAtlasSource_wnfdr")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_va77k"]
+size = Vector2(1152, 20)
+
 [node name="Space" type="Node2D"]
+
+[node name="background" type="Sprite2D" parent="."]
+position = Vector2(625, 175.5)
+scale = Vector2(1.2324219, 1.1103516)
+texture = ExtResource("1_p3ued")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_0ll74")
 format = 2
 
 [node name="player" parent="." instance=ExtResource("1_0ll74")]
-position = Vector2(1, 2)
+position = Vector2(107, 99)
+
+[node name="Invisiblewall" type="TileMap" parent="."]
+visible = false
+tile_set = SubResource("TileSet_bj3u6")
+format = 2
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-6, -11)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(588, 512)
+shape = SubResource("RectangleShape2D_va77k")
