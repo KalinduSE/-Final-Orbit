@@ -1,12 +1,23 @@
-[gd_scene load_steps=2 format=3 uid="uid://cfk3jxxpbnhic"]
+[gd_scene load_steps=4 format=3 uid="uid://cfk3jxxpbnhic"]
 
 [ext_resource type="PackedScene" uid="uid://dt0llnyw1j001" path="res://player.tscn" id="1_a02cp"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a02cp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_go701"]
+size = Vector2(459, 20)
+
 [node name="World" type="Node2D"]
 
-[node name="TileMap" type="TileMap" parent="."]
-format = 2
-
 [node name="player" parent="." instance=ExtResource("1_a02cp")]
-position = Vector2(399, 313)
+position = Vector2(145, -51)
 script = null
+
+[node name="ShapeCast2D" type="ShapeCast2D" parent="."]
+position = Vector2(301, 342)
+shape = SubResource("RectangleShape2D_a02cp")
+target_position = Vector2(440, -1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShapeCast2D"]
+position = Vector2(319, 0)
+shape = SubResource("RectangleShape2D_go701")
