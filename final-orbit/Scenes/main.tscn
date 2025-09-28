@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://dhc5p8x2rjpyv"]
+[gd_scene load_steps=6 format=3 uid="uid://dhc5p8x2rjpyv"]
 
 [ext_resource type="Script" uid="uid://uy7a5t0aylr0" path="res://Scenes/main.gd" id="1_bo1nx"]
 [ext_resource type="Texture2D" uid="uid://c50gu8tajoqnr" path="res://Nairan/Starfield_01-1024x1024.png" id="1_jjgbg"]
+[ext_resource type="AudioStream" uid="uid://bwe27krxuytsd" path="res://Scenes/Dream Shore - Resilience.mp3" id="3_8gbba"]
+[ext_resource type="AudioStream" uid="uid://csj67kh8gxkb" path="res://Scenes/button-click-289742.mp3" id="4_jjvhh"]
+[ext_resource type="AudioStream" uid="uid://bwn7bwru8k11n" path="res://Scenes/menu-button-88360.mp3" id="5_kry3j"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_bo1nx")
@@ -38,7 +41,18 @@ offset_top = 408.0
 offset_right = 839.0
 offset_bottom = 502.0
 theme_override_font_sizes/font_size = 35
-text = "Quiet"
+text = "Quit"
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_8gbba")
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_jjvhh")
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_kry3j")
+
+[connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="mouse_entered" from="Button2" to="." method="_on_button_2_mouse_entered"]
 [connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
