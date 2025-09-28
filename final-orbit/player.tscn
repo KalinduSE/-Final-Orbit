@@ -102,6 +102,9 @@ animation = &"Idle"
 autoplay = "Idle"
 frame_progress = 0.51529
 
+[node name="Area2D" type="Area2D" parent="."]
+rotation = 1.5707964
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="FuelBar" type="ProgressBar" parent="CanvasLayer"]
@@ -129,3 +132,5 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_2hs0m")
 value = 100.0
 fill_mode = 2
 show_percentage = false
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

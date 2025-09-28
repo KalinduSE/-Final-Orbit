@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var damage_amount: float = 2.0     # health decrease per collision
+@export var damage_amount: float = 30     # health decrease per collision
 @export var apply_once: bool = true        # only apply damage once per rocket
 
 var already_damaged_bodies := []
