@@ -3,14 +3,17 @@
 [ext_resource type="Texture2D" uid="uid://bpjg7kevdtt5e" path="res://Assets/Aestroids/Asteroid_01_-_Base.png" id="1_g73b5"]
 [ext_resource type="Script" uid="uid://2y4n52pbkr60" path="res://Scenes/aesteroid.gd" id="1_it3yu"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_it3yu"]
-radius = 22.203604
+[sub_resource type="CircleShape2D" id="CircleShape2D_wqxwf"]
+radius = 22.090721
 
 [node name="Aesteroid" type="Area2D"]
 script = ExtResource("1_it3yu")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_wqxwf")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_g73b5")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D"]
-shape = SubResource("CircleShape2D_it3yu")
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

@@ -4,9 +4,12 @@ extends CharacterBody2D
 const SPEED := 300.0           # pixels per second
 const BOOST_SPEED := 500.0     # optional faster speed when boosting
 
+
 var max_health = 100
 var current_health = 100
 @onready var health_bar = $CanvasLayer/HealthBar
+@onready var fuel_bar = $CanvasLayer/FuelBar
+ 
 
 # Fuel settings
 var max_fuel := 100.0

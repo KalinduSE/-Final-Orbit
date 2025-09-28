@@ -7,8 +7,8 @@ extends Node2D
 @onready var timer_label: Label = $UI/TimerLabel
 @onready var decision_timer: Timer = $UI/DecisionTimer
 
-@onready var fuel_bar = $CanvasLayer/FuelBar
-@onready var health_bar = $CanvasLayer/HealthBar
+#@onready var fuel_bar = $CanvasLayer/FuelBar
+#@onready var health_bar = $CanvasLayer/HealthBar
 
 # Fuel & health
 var max_fuel = 100
@@ -53,11 +53,11 @@ func _ready() -> void:
 	choice_screen.get_node("SaveYourFriend").connect("pressed", Callable(self, "_on_save_your_friend_pressed"))
 	choice_screen.get_node("SaveTheEarth").connect("pressed", Callable(self, "_on_save_the_earth_pressed"))
 
-	fuel_bar.max_value = max_fuel
-	health_bar.max_value = max_health
+	player.fuel_bar.max_value = max_fuel
+	player.health_bar.max_value = max_health
 
-	fuel_bar.value = current_fuel
-	health_bar.value = current_health
+	player.fuel_bar.value = current_fuel
+	player.health_bar.value = current_health
 
 
 func _on_timer_tick() -> void:
@@ -91,7 +91,7 @@ func _on_save_your_friend_pressed() -> void:
 
 	# Reduce fuel by half immediately
 	current_fuel /= 2
-	fuel_bar.value = current_fuel
+	player.fuel_bar.value = current_fuel
 	print("Save your friend pressed - ship will rotate 180° and fuel reduced.")
 
 
@@ -123,4 +123,4 @@ func _process(delta):
 
 		# Reduce fuel slowly up to 15%
 		current_fuel = max_fuel - fuel_drain_total * progress
-		fuel_bar.value = current_fuel
+		player.fuel_bar.value = current_fuel

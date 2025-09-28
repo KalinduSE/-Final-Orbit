@@ -1,15 +1,19 @@
-[gd_scene load_steps=25 format=3 uid="uid://b624pko3d7g0h"]
+[gd_scene load_steps=24 format=3 uid="uid://b624pko3d7g0h"]
 
 [ext_resource type="PackedScene" uid="uid://dt0llnyw1j001" path="res://player.tscn" id="1_0ll74"]
-[ext_resource type="Texture2D" uid="uid://c50gu8tajoqnr" path="res://Nairan/Starfield_01-1024x1024.png" id="1_p3ued"]
 [ext_resource type="Script" uid="uid://b78nqj7twr0cs" path="res://Scenes/space.gd" id="1_uqc4w"]
 [ext_resource type="Texture2D" uid="uid://ct5hgqv3wdoqn" path="res://Nairan/space man.png" id="2_1fjq1"]
 [ext_resource type="Texture2D" uid="uid://dvfojftrd2bu4" path="res://Nairan/Purple Planet.png" id="3_2fo43"]
+[ext_resource type="Script" uid="uid://bva0ycf32ar3u" path="res://Scenes/background.gd" id="3_4qykp"]
 [ext_resource type="Script" uid="uid://b0fwm0uos2kyn" path="res://Scenes/spaceman.gd" id="3_kqa63"]
 [ext_resource type="Script" uid="uid://cx1xiqv87o30u" path="res://Scenes/static_body_2d.gd" id="4_bj3u6"]
+[ext_resource type="Texture2D" uid="uid://db0l7nggf1icq" path="res://Assets/Backgrounds/pexels-francesco-ungaro-998641.jpg" id="4_p268w"]
 [ext_resource type="Script" uid="uid://bggcudkbi1ovd" path="res://Scenes/collision_shape_2d.gd" id="4_wnfdr"]
 [ext_resource type="Script" uid="uid://dv8bihifup7pu" path="res://Scenes/ui.gd" id="6_va77k"]
 [ext_resource type="PackedScene" uid="uid://dw2qe4n8jok3t" path="res://Scenes/Aesteroid.tscn" id="10_sg02i"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0b4c6"]
+blend_mode = 1
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sg02i"]
 atlas = ExtResource("2_1fjq1")
@@ -66,24 +70,69 @@ sources/0 = SubResource("TileSetAtlasSource_wnfdr")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_va77k"]
 size = Vector2(1152, 20)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kqa63"]
+[sub_resource type="GDScript" id="GDScript_6umj4"]
+script/source = "extends Node2D
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0b4c6"]
-bg_color = Color(0.34156835, 0.27470312, 0, 1)
+##@export var planet_scene: PackedScene  # assign SmallPlanet.tscn here
+##@export var spawn_interval: float = 2.0
+##@export var x_min: float = 100
+##@export var x_max: float = 1820  # screen width
+##var spawn_timer: float = 0.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sg02i"]
+   ## func _process(delta):
+	##spawn_timer += delta
+	##if spawn_timer >= spawn_interval:
+	##	spawn_timer = 0
+	##	spawn_planet()
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4qykp"]
-bg_color = Color(0.43110743, 0.042076625, 0, 1)
+##func spawn_planet():
+	##var planet_instance = planet_scene.instantiate()
+	##planet_instance.position = Vector2(randf_range(x_min, x_max), -50)  # spawn above screen
+	##add_child(planet_instance)
+"
 
 [node name="Space" type="Node2D"]
 script = ExtResource("1_uqc4w")
 metadata/_edit_horizontal_guides_ = [39.0]
 
 [node name="background" type="Sprite2D" parent="."]
-position = Vector2(571, 330)
-scale = Vector2(2.616, 1.5)
-texture = ExtResource("1_p3ued")
+
+[node name="ColorRect" type="ColorRect" parent="background"]
+custom_minimum_size = Vector2(1000, 1000)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2113.0
+offset_top = -1221.0
+offset_right = 2113.0
+offset_bottom = 1221.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="background"]
+modulate = Color(1, 1, 1, 0.17254902)
+material = SubResource("CanvasItemMaterial_0b4c6")
+texture = ExtResource("4_p268w")
+flip_h = true
+script = ExtResource("3_4qykp")
+scroll_speed = 10.0
+
+[node name="Sprite2D2" type="Sprite2D" parent="background"]
+modulate = Color(1, 1, 1, 0.30980393)
+material = SubResource("CanvasItemMaterial_0b4c6")
+texture = ExtResource("4_p268w")
+script = ExtResource("3_4qykp")
+scroll_speed = 25.0
+
+[node name="Sprite2D3" type="Sprite2D" parent="background"]
+modulate = Color(1, 1, 1, 0.2784314)
+material = SubResource("CanvasItemMaterial_0b4c6")
+texture = ExtResource("4_p268w")
+flip_h = true
+flip_v = true
+script = ExtResource("3_4qykp")
+scroll_speed = 100.0
 
 [node name="Spaceman" type="AnimatedSprite2D" parent="."]
 position = Vector2(528.00006, 335.17645)
@@ -181,32 +230,20 @@ size_flags_stretch_ratio = 5.0
 theme_override_font_sizes/font_size = 60
 horizontal_alignment = 1
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Aesteroid5" parent="." instance=ExtResource("10_sg02i")]
+position = Vector2(199, 87)
 
-[node name="FuelBar" type="ProgressBar" parent="CanvasLayer"]
-offset_left = 7.0
-offset_top = 107.00001
-offset_right = 11.0
-offset_bottom = 134.0
-rotation = -1.5707964
-scale = Vector2(6, 6)
-theme_override_styles/background = SubResource("StyleBoxFlat_kqa63")
-theme_override_styles/fill = SubResource("StyleBoxFlat_0b4c6")
-value = 100.0
-fill_mode = 2
-show_percentage = false
+[node name="Node2D" type="Node2D" parent="Aesteroid5"]
+script = SubResource("GDScript_6umj4")
 
-[node name="HealthBar" type="ProgressBar" parent="CanvasLayer"]
-offset_left = 1138.0
-offset_top = 81.0
-offset_right = 1142.0
-offset_bottom = 108.0
-rotation = 1.5707964
-scale = Vector2(6, 6)
-theme_override_styles/background = SubResource("StyleBoxFlat_sg02i")
-theme_override_styles/fill = SubResource("StyleBoxFlat_4qykp")
-value = 100.0
-show_percentage = false
+[node name="Aesteroid6" parent="." instance=ExtResource("10_sg02i")]
+position = Vector2(366, 88)
 
-[node name="Aesteroid" parent="." instance=ExtResource("10_sg02i")]
-position = Vector2(188, 236)
+[node name="Node2D" type="Node2D" parent="Aesteroid6"]
+script = SubResource("GDScript_6umj4")
+
+[node name="Aesteroid7" parent="." instance=ExtResource("10_sg02i")]
+position = Vector2(366, 88)
+
+[node name="Node2D" type="Node2D" parent="Aesteroid7"]
+script = SubResource("GDScript_6umj4")
