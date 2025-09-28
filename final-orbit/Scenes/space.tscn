@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://b78nqj7twr0cs" path="res://Scenes/space.gd" id="1_uqc4w"]
 [ext_resource type="Texture2D" uid="uid://ct5hgqv3wdoqn" path="res://Nairan/space man.png" id="2_1fjq1"]
 [ext_resource type="Texture2D" uid="uid://dvfojftrd2bu4" path="res://Nairan/Purple Planet.png" id="3_2fo43"]
-[ext_resource type="Script" uid="uid://bva0ycf32ar3u" path="res://Scenes/background.gd" id="3_4qykp"]
+[ext_resource type="Script" path="res://Scenes/background.gd" id="3_4qykp"]
 [ext_resource type="Script" uid="uid://b0fwm0uos2kyn" path="res://Scenes/spaceman.gd" id="3_kqa63"]
 [ext_resource type="Script" uid="uid://cx1xiqv87o30u" path="res://Scenes/static_body_2d.gd" id="4_bj3u6"]
 [ext_resource type="Texture2D" uid="uid://db0l7nggf1icq" path="res://Assets/Backgrounds/pexels-francesco-ungaro-998641.jpg" id="4_p268w"]
@@ -95,7 +95,8 @@ script/source = "extends Node2D
 script = ExtResource("1_uqc4w")
 metadata/_edit_horizontal_guides_ = [39.0]
 
-[node name="background" type="Sprite2D" parent="."]
+[node name="background" type="CanvasLayer" parent="."]
+layer = -99
 
 [node name="ColorRect" type="ColorRect" parent="background"]
 custom_minimum_size = Vector2(1000, 1000)
@@ -150,6 +151,7 @@ position = Vector2(513, 315)
 
 [node name="Camera2D" type="Camera2D" parent="player"]
 position_smoothing_enabled = true
+position_smoothing_speed = 1.0
 
 [node name="Invisiblewall" type="TileMap" parent="."]
 visible = false
@@ -237,13 +239,13 @@ position = Vector2(199, 87)
 script = SubResource("GDScript_6umj4")
 
 [node name="Aesteroid6" parent="." instance=ExtResource("10_sg02i")]
-position = Vector2(366, 88)
+position = Vector2(134, 284)
 
 [node name="Node2D" type="Node2D" parent="Aesteroid6"]
 script = SubResource("GDScript_6umj4")
 
 [node name="Aesteroid7" parent="." instance=ExtResource("10_sg02i")]
-position = Vector2(366, 88)
+position = Vector2(127, 537)
 
 [node name="Node2D" type="Node2D" parent="Aesteroid7"]
 script = SubResource("GDScript_6umj4")

@@ -1,69 +1,66 @@
 extends CharacterBody2D
 
-# Rocket movement speed
-const SPEED := 300.0           # pixels per second
-const BOOST_SPEED := 500.0     # optional faster speed when boosting
+# --- Rocket Movement ---
+const SPEED := 300.0           # normal speed
+const BOOST_SPEED := 500.0     # boost speed
 
-
-var max_health = 100
-var current_health = 100
-@onready var health_bar = $CanvasLayer/HealthBar
-@onready var fuel_bar = $CanvasLayer/FuelBar
- 
-
-# Fuel settings
+# --- Fuel & Health ---
 var max_fuel := 100.0
 var current_fuel := 100.0
-var fuel_drain_rate := 10.0    # units per second while moving
+var fuel_drain_rate := 5.0      # fuel per second while moving
+var max_health := 100
+var current_health := 100
 
-# Rocket state
-var is_disabled : bool = false  # disable movement during cutscenes/rotations
+# --- References to UI bars ---
+@onready var health_bar = $CanvasLayer/HealthBar      # TextureProgressBar
+@onready var fuel_bar = $CanvasLayer/FuelBar          # TextureProgressBar
 
-func _physics_process(delta: float) -> void:
+# --- Rocket State ---
+var is_disabled : bool = false   # disables movement during cutscenes
+
+signal health_changed
+
+func _physics_process(_delta: float) -> void:
 	if is_disabled:
 		velocity = Vector2.ZERO
 		return  # stop movement if disabled
 
-	# --- Get player input ---
+	# --- Player input ---
 	var input_vector := Vector2.ZERO
 	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	input_vector.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
 
 	if input_vector.length() > 0:
-		input_vector = input_vector.normalized()  # prevent faster diagonal movement
+		input_vector = input_vector.normalized()
 
-	# --- Optional Boost ---
+	# --- Boost speed ---
 	var current_speed := SPEED
-	if Input.is_action_pressed("ui_select"):  # Shift key or custom action
+	if Input.is_action_pressed("ui_select"):
 		current_speed = BOOST_SPEED
 
-	# --- Apply movement ---
+	# --- Move the rocket ---
 	velocity = input_vector * current_speed
 	move_and_slide()
 
-	# --- Fuel drain while moving ---
+	# --- Fuel drain ---
 	if input_vector.length() > 0:
-		current_fuel -= fuel_drain_rate * delta
-		current_fuel = clamp(current_fuel, 0, max_fuel)  # prevent negative fuel
-		
-		
-func take_damage(amount: int) -> void:
-	current_health -= amount
-	if current_health < 0:
-		current_health = 0
-	
-	health_bar.value = current_health
+		current_fuel -= fuel_drain_rate * _delta
+		current_fuel = clamp(current_fuel, 0, max_fuel)
+		fuel_bar.value = current_fuel
 
-	if current_health == 0:
+	# --- Check fuel depletion ---
+	if current_fuel <= 0:
 		die()
-		
 
-
+func take_damage(amount: float) -> void:
 	current_health -= amount
+	current_health = clamp(current_health, 0, max_health)
+	health_bar.value = current_health
 	if current_health <= 0:
-		print("Game Over")  # You can trigger fail logic here
+		die()
 
-		
 func die() -> void:
-	print("Game Over - Rocket Destroyed!")
-	# Add your game over logic here (like switching to game over scene)
+	print("🚀 Game Over! Rocket destroyed or fuel ran out")
+	is_disabled = true
+	velocity = Vector2.ZERO
+	# TODO: Switch to Game Over scene or show message

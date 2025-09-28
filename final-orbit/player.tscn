@@ -127,4 +127,5 @@ scale = Vector2(6, 6)
 theme_override_styles/background = SubResource("StyleBoxFlat_sweqy")
 theme_override_styles/fill = SubResource("StyleBoxFlat_2hs0m")
 value = 100.0
+fill_mode = 2
 show_percentage = false
