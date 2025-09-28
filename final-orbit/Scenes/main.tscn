@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhc5p8x2rjpyv"]
+
+[ext_resource type="Script" uid="uid://uy7a5t0aylr0" path="res://Scenes/main.gd" id="1_bo1nx"]
+[ext_resource type="Texture2D" uid="uid://c50gu8tajoqnr" path="res://Nairan/Starfield_01-1024x1024.png" id="1_jjgbg"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_bo1nx")
+metadata/_edit_vertical_guides_ = [283.0, 275.0]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(568, 192.00002)
+scale = Vector2(1.1572266, 1.0498047)
+texture = ExtResource("1_jjgbg")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Sprite2D"]
+follow_viewport_enabled = true
+follow_viewport_scale = 0.001
+
+[node name="Label" type="Label" parent="Sprite2D"]
+offset_left = -133.0769
+offset_top = -61.916306
+offset_right = 133.07669
+offset_bottom = 38.102295
+theme_override_font_sizes/font_size = 43
+text = "Final Orbit"
+
+[node name="Button" type="Button" parent="."]
+offset_left = 272.0
+offset_top = 266.0
+offset_right = 837.0
+offset_bottom = 360.0
+theme_override_font_sizes/font_size = 35
+text = "Play"
+
+[node name="Button2" type="Button" parent="."]
+offset_left = 274.0
+offset_top = 408.0
+offset_right = 839.0
+offset_bottom = 502.0
+theme_override_font_sizes/font_size = 35
+text = "Quiet"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
