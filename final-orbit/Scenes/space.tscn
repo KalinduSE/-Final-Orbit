@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://b624pko3d7g0h"]
+[gd_scene load_steps=26 format=3 uid="uid://b624pko3d7g0h"]
 
 [ext_resource type="PackedScene" uid="uid://dt0llnyw1j001" path="res://player.tscn" id="1_0ll74"]
 [ext_resource type="Script" uid="uid://b78nqj7twr0cs" path="res://Scenes/space.gd" id="1_uqc4w"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://dv8bihifup7pu" path="res://Scenes/ui.gd" id="6_va77k"]
 [ext_resource type="PackedScene" uid="uid://dw2qe4n8jok3t" path="res://Scenes/Aesteroid.tscn" id="10_sg02i"]
 [ext_resource type="PackedScene" uid="uid://b2ga7los1e6sx" path="res://Scenes/FuelPod.tscn" id="12_4qykp"]
+[ext_resource type="PackedScene" uid="uid://pp0verpymh2q" path="res://Scenes/RepairKit.tscn" id="13_p268w"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0b4c6"]
 blend_mode = 1
@@ -281,14 +282,264 @@ position = Vector2(114, 547)
 [node name="Node2D" type="Node2D" parent="Aesteroid7"]
 script = SubResource("GDScript_6umj4")
 
+[node name="Aesteroid13" parent="." instance=ExtResource("10_sg02i")]
+position = Vector2(-219, 356)
+
+[node name="Node2D" type="Node2D" parent="Aesteroid13"]
+script = SubResource("GDScript_6umj4")
+
+[node name="Aesteroid14" parent="." instance=ExtResource("10_sg02i")]
+position = Vector2(-680, 576)
+
+[node name="Node2D" type="Node2D" parent="Aesteroid14"]
+script = SubResource("GDScript_6umj4")
+
+[node name="Aesteroid15" parent="." instance=ExtResource("10_sg02i")]
+position = Vector2(-592, 353)
+
+[node name="Node2D" type="Node2D" parent="Aesteroid15"]
+script = SubResource("GDScript_6umj4")
+
+[node name="Aesteroid16" parent="." instance=ExtResource("10_sg02i")]
+position = Vector2(-780, 171)
+
+[node name="Node2D" type="Node2D" parent="Aesteroid16"]
+script = SubResource("GDScript_6umj4")
+
+[node name="Aesteroid17" parent="." instance=ExtResource("10_sg02i")]
+position = Vector2(-730, 406)
+
+[node name="Node2D" type="Node2D" parent="Aesteroid17"]
+script = SubResource("GDScript_6umj4")
+
+[node name="Aesteroid18" parent="." instance=ExtResource("10_sg02i")]
+position = Vector2(-1097, 500)
+
+[node name="Node2D" type="Node2D" parent="Aesteroid18"]
+script = SubResource("GDScript_6umj4")
+
+[node name="Aesteroid19" parent="." instance=ExtResource("10_sg02i")]
+position = Vector2(-1072, 331)
+
+[node name="Node2D" type="Node2D" parent="Aesteroid19"]
+script = SubResource("GDScript_6umj4")
+
+[node name="Aesteroid20" parent="." instance=ExtResource("10_sg02i")]
+position = Vector2(-1241, 259)
+
+[node name="Node2D" type="Node2D" parent="Aesteroid20"]
+script = SubResource("GDScript_6umj4")
+
+[node name="Aesteroid21" parent="." instance=ExtResource("10_sg02i")]
+position = Vector2(-1046, 165)
+
+[node name="Node2D" type="Node2D" parent="Aesteroid21"]
+script = SubResource("GDScript_6umj4")
+
+[node name="Aesteroid22" parent="." instance=ExtResource("10_sg02i")]
+position = Vector2(-1445, 369)
+
+[node name="Node2D" type="Node2D" parent="Aesteroid22"]
+script = SubResource("GDScript_6umj4")
+
+[node name="Aesteroid23" parent="." instance=ExtResource("10_sg02i")]
+position = Vector2(-1640, 309)
+
+[node name="Node2D" type="Node2D" parent="Aesteroid23"]
+script = SubResource("GDScript_6umj4")
+
+[node name="Aesteroid24" parent="." instance=ExtResource("10_sg02i")]
+position = Vector2(-1502, 165)
+
+[node name="Node2D" type="Node2D" parent="Aesteroid24"]
+script = SubResource("GDScript_6umj4")
+
+[node name="Aesteroid25" parent="." instance=ExtResource("10_sg02i")]
+position = Vector2(-1562, 686)
+
+[node name="Node2D" type="Node2D" parent="Aesteroid25"]
+script = SubResource("GDScript_6umj4")
+
+[node name="Aesteroid26" parent="." instance=ExtResource("10_sg02i")]
+position = Vector2(-1236, 834)
+
+[node name="Node2D" type="Node2D" parent="Aesteroid26"]
+script = SubResource("GDScript_6umj4")
+
+[node name="Aesteroid27" parent="." instance=ExtResource("10_sg02i")]
+position = Vector2(-853, 843)
+
+[node name="Node2D" type="Node2D" parent="Aesteroid27"]
+script = SubResource("GDScript_6umj4")
+
+[node name="Aesteroid28" parent="." instance=ExtResource("10_sg02i")]
+position = Vector2(-558, 837)
+
+[node name="Node2D" type="Node2D" parent="Aesteroid28"]
+script = SubResource("GDScript_6umj4")
+
+[node name="Aesteroid29" parent="." instance=ExtResource("10_sg02i")]
+position = Vector2(-328, 843)
+
+[node name="Node2D" type="Node2D" parent="Aesteroid29"]
+script = SubResource("GDScript_6umj4")
+
+[node name="Aesteroid30" parent="." instance=ExtResource("10_sg02i")]
+position = Vector2(-328, 843)
+
+[node name="Node2D" type="Node2D" parent="Aesteroid30"]
+script = SubResource("GDScript_6umj4")
+
+[node name="Aesteroid31" parent="." instance=ExtResource("10_sg02i")]
+position = Vector2(384, 843)
+
+[node name="Node2D" type="Node2D" parent="Aesteroid31"]
+script = SubResource("GDScript_6umj4")
+
+[node name="Aesteroid32" parent="." instance=ExtResource("10_sg02i")]
+position = Vector2(1049, 837)
+
+[node name="Node2D" type="Node2D" parent="Aesteroid32"]
+script = SubResource("GDScript_6umj4")
+
+[node name="Aesteroid33" parent="." instance=ExtResource("10_sg02i")]
+position = Vector2(1193, 734)
+
+[node name="Node2D" type="Node2D" parent="Aesteroid33"]
+script = SubResource("GDScript_6umj4")
+
+[node name="Aesteroid36" parent="." instance=ExtResource("10_sg02i")]
+position = Vector2(1529, 211)
+
+[node name="Node2D" type="Node2D" parent="Aesteroid36"]
+script = SubResource("GDScript_6umj4")
+
+[node name="Aesteroid37" parent="." instance=ExtResource("10_sg02i")]
+position = Vector2(1529, 211)
+
+[node name="Node2D" type="Node2D" parent="Aesteroid37"]
+script = SubResource("GDScript_6umj4")
+
+[node name="Aesteroid38" parent="." instance=ExtResource("10_sg02i")]
+position = Vector2(1193, 211)
+
+[node name="Node2D" type="Node2D" parent="Aesteroid38"]
+script = SubResource("GDScript_6umj4")
+
+[node name="Aesteroid39" parent="." instance=ExtResource("10_sg02i")]
+position = Vector2(-844, 1073)
+
+[node name="Node2D" type="Node2D" parent="Aesteroid39"]
+script = SubResource("GDScript_6umj4")
+
+[node name="Aesteroid40" parent="." instance=ExtResource("10_sg02i")]
+position = Vector2(-1086, 947)
+
+[node name="Node2D" type="Node2D" parent="Aesteroid40"]
+script = SubResource("GDScript_6umj4")
+
+[node name="Aesteroid41" parent="." instance=ExtResource("10_sg02i")]
+position = Vector2(-1403, 611)
+
+[node name="Node2D" type="Node2D" parent="Aesteroid41"]
+script = SubResource("GDScript_6umj4")
+
+[node name="Aesteroid42" parent="." instance=ExtResource("10_sg02i")]
+position = Vector2(-1764, 611)
+
+[node name="Node2D" type="Node2D" parent="Aesteroid42"]
+script = SubResource("GDScript_6umj4")
+
+[node name="Aesteroid44" parent="." instance=ExtResource("10_sg02i")]
+position = Vector2(1462, 529)
+
+[node name="Node2D" type="Node2D" parent="Aesteroid44"]
+script = SubResource("GDScript_6umj4")
+
+[node name="Aesteroid45" parent="." instance=ExtResource("10_sg02i")]
+position = Vector2(1754, 257)
+
+[node name="Node2D" type="Node2D" parent="Aesteroid45"]
+script = SubResource("GDScript_6umj4")
+
+[node name="Aesteroid46" parent="." instance=ExtResource("10_sg02i")]
+position = Vector2(1801, 484)
+
+[node name="Node2D" type="Node2D" parent="Aesteroid46"]
+script = SubResource("GDScript_6umj4")
+
+[node name="Aesteroid47" parent="." instance=ExtResource("10_sg02i")]
+position = Vector2(1724, 840)
+
+[node name="Node2D" type="Node2D" parent="Aesteroid47"]
+script = SubResource("GDScript_6umj4")
+
+[node name="Aesteroid48" parent="." instance=ExtResource("10_sg02i")]
+position = Vector2(2028, 203)
+
+[node name="Node2D" type="Node2D" parent="Aesteroid48"]
+script = SubResource("GDScript_6umj4")
+
+[node name="Aesteroid49" parent="." instance=ExtResource("10_sg02i")]
+position = Vector2(2116, 415)
+
+[node name="Node2D" type="Node2D" parent="Aesteroid49"]
+script = SubResource("GDScript_6umj4")
+
+[node name="Aesteroid50" parent="." instance=ExtResource("10_sg02i")]
+position = Vector2(2457, 610)
+
+[node name="Node2D" type="Node2D" parent="Aesteroid50"]
+script = SubResource("GDScript_6umj4")
+
+[node name="Aesteroid51" parent="." instance=ExtResource("10_sg02i")]
+position = Vector2(2478, 303)
+
+[node name="Node2D" type="Node2D" parent="Aesteroid51"]
+script = SubResource("GDScript_6umj4")
+
+[node name="Aesteroid52" parent="." instance=ExtResource("10_sg02i")]
+position = Vector2(2785, 104)
+
+[node name="Node2D" type="Node2D" parent="Aesteroid52"]
+script = SubResource("GDScript_6umj4")
+
+[node name="Aesteroid53" parent="." instance=ExtResource("10_sg02i")]
+position = Vector2(2903, 468)
+
+[node name="Node2D" type="Node2D" parent="Aesteroid53"]
+script = SubResource("GDScript_6umj4")
+
+[node name="Aesteroid43" parent="." instance=ExtResource("10_sg02i")]
+position = Vector2(-1764, 611)
+
+[node name="Node2D" type="Node2D" parent="Aesteroid43"]
+script = SubResource("GDScript_6umj4")
+
 [node name="FuelPod" parent="." instance=ExtResource("12_4qykp")]
-position = Vector2(-117.99999, 290)
+position = Vector2(-913, 352)
+scale = Vector2(0.2, 0.2)
+
+[node name="FuelPod3" parent="." instance=ExtResource("12_4qykp")]
+position = Vector2(1630.9998, 402)
+scale = Vector2(0.2, 0.2)
+
+[node name="FuelPod4" parent="." instance=ExtResource("12_4qykp")]
+position = Vector2(2771, 465)
 scale = Vector2(0.2, 0.2)
 
 [node name="FuelPod2" parent="." instance=ExtResource("12_4qykp")]
 position = Vector2(272, 242)
 scale = Vector2(0.2, 0.2)
 
-[node name="FuelPod3" parent="." instance=ExtResource("12_4qykp")]
-position = Vector2(-466.99994, 250)
-scale = Vector2(0.2, 0.2)
+[node name="RepairKit" parent="." instance=ExtResource("13_p268w")]
+position = Vector2(-661, 204)
+scale = Vector2(0.5, 0.5)
+
+[node name="RepairKit3" parent="." instance=ExtResource("13_p268w")]
+position = Vector2(2188, 1027)
+scale = Vector2(0.5, 0.5)
+
+[node name="RepairKit2" parent="." instance=ExtResource("13_p268w")]
+position = Vector2(-1739, 416)
+scale = Vector2(0.5, 0.5)

@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://pp0verpymh2q"]
+
+[ext_resource type="Texture2D" uid="uid://gk1hlo2cqgnr" path="res://Assets/Explosion_02.png" id="1_bd8rm"]
+[ext_resource type="Script" uid="uid://bgm5hjvnjquyt" path="res://Scenes/repair_kit.gd" id="1_xcinx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xcinx"]
+radius = 63.324562
+
+[node name="RepairKit" type="Area2D"]
+script = ExtResource("1_xcinx")
+
+[node name="RepairKit" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_bd8rm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_xcinx")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

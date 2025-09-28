@@ -76,3 +76,16 @@ func _on_area_entered(area):
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	pass # Replace with function body.
+	if area.is_in_group("fuel_pod"):
+		current_fuel += area.refill_amount
+		current_fuel = clamp(current_fuel, 0, max_fuel)
+		fuel_bar.value = current_fuel
+		area.queue_free()
+		print("⛽ Collected fuel pod!")
+
+	elif area.is_in_group("repair_kit"):
+		current_health += area.repair_amount
+		current_health = clamp(current_health, 0, max_health)
+		health_bar.value = current_health
+		area.queue_free()
+		print("🔧 Collected repair kit!")
