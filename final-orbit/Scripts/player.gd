@@ -1,31 +1,34 @@
 extends CharacterBody2D
 
 # --- Rocket Movement ---
-const SPEED := 300.0           # normal speed
-const BOOST_SPEED := 500.0     # boost speed
+const SPEED := 300.0
+const BOOST_SPEED := 500.0
 
 # --- Fuel & Health ---
 var max_fuel := 100.0
 var current_fuel := 100.0
-var fuel_drain_rate := 5.0      # fuel per second while moving
+var fuel_drain_rate := 5.0
+
 var max_health := 100
 var current_health := 100
 
-# --- References to UI bars ---
-@onready var health_bar = $CanvasLayer/HealthBar      # TextureProgressBar
-@onready var fuel_bar = $CanvasLayer/FuelBar          # TextureProgressBar
+# --- UI References ---
+@onready var health_bar = $CanvasLayer/HealthBar   # TextureProgressBar
+@onready var fuel_bar = $CanvasLayer/FuelBar       # TextureProgressBar
 
 # --- Rocket State ---
-var is_disabled : bool = false   # disables movement during cutscenes
+var is_disabled : bool = false
 
-signal health_changed
+func _ready() -> void:
+	%GameOver.visible = false
+	
 
 func _physics_process(_delta: float) -> void:
 	if is_disabled:
 		velocity = Vector2.ZERO
-		return  # stop movement if disabled
+		return
 
-	# --- Player input ---
+	# --- Movement Input ---
 	var input_vector := Vector2.ZERO
 	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	input_vector.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
@@ -33,12 +36,11 @@ func _physics_process(_delta: float) -> void:
 	if input_vector.length() > 0:
 		input_vector = input_vector.normalized()
 
-	# --- Boost speed ---
 	var current_speed := SPEED
-	if Input.is_action_pressed("ui_select"):
+	if Input.is_action_pressed("ui_select"):  # Boost
 		current_speed = BOOST_SPEED
 
-	# --- Move the rocket ---
+	# Move rocket
 	velocity = input_vector * current_speed
 	move_and_slide()
 
@@ -50,42 +52,21 @@ func _physics_process(_delta: float) -> void:
 
 	# --- Check fuel depletion ---
 	if current_fuel <= 0:
-		die()
+		game_over("Fuel depleted!")
 
 func take_damage(amount: float) -> void:
 	current_health -= amount
 	current_health = clamp(current_health, 0, max_health)
 	health_bar.value = current_health
-	if current_health <= 0:
-		die()
 
-func die() -> void:
-	print("🚀 Game Over! Rocket destroyed or fuel ran out")
+	if current_health <= 0:
+		game_over("Health depleted!")
+
+# --- Game Over Function ---
+func game_over(reason: String) -> void:
+	if is_disabled:
+		return
 	is_disabled = true
 	velocity = Vector2.ZERO
-	# TODO: Switch to Game Over scene or show message
-	
-func _on_area_entered(area):
-	if area.is_in_group("fuel_pod"):
-		current_fuel += area.refill_amount
-		current_fuel = clamp(current_fuel, 0, max_fuel)
-		fuel_bar.value = current_fuel
-		area.queue_free()
-		print("⛽ Collected fuel pod!")
 
-
-func _on_area_2d_area_entered(area: Area2D) -> void:
-	pass # Replace with function body.
-	if area.is_in_group("fuel_pod"):
-		current_fuel += area.refill_amount
-		current_fuel = clamp(current_fuel, 0, max_fuel)
-		fuel_bar.value = current_fuel
-		area.queue_free()
-		print("⛽ Collected fuel pod!")
-
-	elif area.is_in_group("repair_kit"):
-		current_health += area.repair_amount
-		current_health = clamp(current_health, 0, max_health)
-		health_bar.value = current_health
-		area.queue_free()
-		print("🔧 Collected repair kit!")
+	%GameOver.visible = true
